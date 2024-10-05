@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>PhotoShare</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+</head>
+
+<body>
+
+    <style>
+        h1 {display: flex; justify-content: center; align-items: center;}
+        
+        body {
+          background-image: url("https://images.unsplash.com/photo-1607457561901-e6ec3a6d16cf?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8MXx8fGVufDB8fHx8&w=1000&q=80");
+          background-repeat: no-repeat;
+          -webkit-background-size: cover;
+          -moz-background-size: cover;
+          -o-background-size: cover;
+          background-size: cover;
+        }
+        
+        main {display: flex; justify-content: center; align-items: center; flex-direction: column;}
+    </style>
+
+  <main>
+     <h1 align="center", style="color:#660033"> Photoshare </h1>
+
+        <div class="search">
+            <h3 align="center", style="color:#660033">Search for Photos:</h3>
+            <form action="{{ url_for('search') }}"  method="POST" align="center">
+                <input name="searchvalue" type="text" id="searchvalue" placeholder="Search for a hashtag" required="required" />
+                <input name="submit" type="submit" value="Search" />
+            </form><br>
+
+            <form action="{{ url_for('popular') }}"  method="POST" align="center">
+                <input name="submit" type="submit" value="Search for most popular" />
+            </form>
+        </div>
+    <h1>
+      <p align="center" style="color:#660033"> My Profile: </p>
+    </h1>
+      <h2  align="center", style="color:#660033"><a href="{{ url_for('photofeed') }}"> Browse photos on feed </a></h2>
+
+    <div class="my-albums">
+        <h3>
+          <p align="center" style="color:#660033"> My Albums: </p>
+        </h3>
+            <ul>
+                {% for row in albums %}
+                <li>{{row[1]}}</a></li>
+                {% endfor %}
+            </ul>
+        {% if len_of_albums==0 %}
+            <p>No albums to display</p>
+
+        {% endif %}
+    </div><br>
+
+    <div class="my-friends">
+        <h3>
+          <p align="center" style="color:#660033"> My Friends: </p>
+        </h3>
+        <ul>
+            {% for friend in friends %}
+                <li>{{ friend[0] }} {{ friend[1] }}: {{ friend[2] }}</li>
+            {% endfor %}
+        </ul>
+    </div><br>
+    <div class="people_who_are_friends_with_me">
+        <h3>
+          <p align="center" style="color:#660033"> People who are friends with me: </p>
+        </h3>
+        <ul>
+            {% for friend in friend3 %}
+                <li>{{ friend3[0] }} {{ friend3[1] }}: {{ friend3[2] }}</li>
+            {% endfor %}
+        </ul>
+    </div><br>
+
+    <div>
+        <h3>
+          <p align="center" style="color:#660033"> You May Also Know: </p>
+        </h3>
+        <ul>
+            {% for friend in friends1 %}
+                <li>FRIEND ID : {{ friends1[0][0]}} , MUTUAL FRIENDS : {{ friends1[0][1] }}</li>
+            {% endfor %}
+        </ul>
+    </div><br>
+
+      <div class="create-album">
+      <h3>
+        <p align="center" style="color:#660033"> Create a New Album: </p>
+      </h3>
+      <form action="{{ url_for('addalbum') }}" method="post" enctype="multipart/form-data">
+        <label for="album_name">Album Name:</label>
+        <input type="text" name="album_name" id="album_name" required>
+        <br>
+        <input type="submit" name="Create Album" value="Create Album" onclick="create_album(document.getElementById('album_name').value, document.getElementById('photo').files[0], document.getElementById('tags').value)">
+      </form>
+    </div><br>
+    
+<!--    <div class="create-album">-->
+<!--        <h3>-->
+<!--          <p align="center" style="color:#660033"> Create a New Album: </p>-->
+<!--        </h3>-->
+<!--        <form action="/upload_album" method="post" enctype="multipart/form-data">-->
+<!--            <label for="album_name">Album Name:</label>-->
+<!--            <input type="text" name="album_name" id="album_name" required>-->
+<!--            <br>-->
+<!--&lt;!&ndash;            <label for="photo">Photo:</label>&ndash;&gt;-->
+<!--&lt;!&ndash;            <input type="file" name="photo" id="photo" required>&ndash;&gt;-->
+<!--&lt;!&ndash;            <br>&ndash;&gt;-->
+<!--&lt;!&ndash;            <label for="caption">Photo Caption:</label>&ndash;&gt;-->
+<!--&lt;!&ndash;            <input type="text" name="caption" id="caption">&ndash;&gt;-->
+<!--&lt;!&ndash;            <br>&ndash;&gt;-->
+<!--&lt;!&ndash;            <label for="tags">Tags (space separated):</label>&ndash;&gt;-->
+<!--&lt;!&ndash;            <input type="text" name="tags" id="tags">&ndash;&gt;-->
+<!--&lt;!&ndash;            <br>&ndash;&gt;-->
+<!--            <input type="submit" name="Create Album" value="Create Album">-->
+<!--          </form>-->
+<!--    </div><br>-->
+    
+    <div class="add-to-existing-album">
+        <h3>
+          <p align="center" style="color:#660033"> Add Picture to an Existing Album: </p>
+        </h3>
+        <form action="/upload_album" method="post" enctype="multipart/form-data">
+            <label for="album_name1">Choose Album:</label>
+            <select id="album_name1" name="album_name" required>
+              <option value="album1">{Album 1}</option>
+              <option value="album2">{Album 2}</option>
+              <option value="album3">{Album 3}</option>
+              <option value="album4">{Album 4}</option>
+            </select>
+            <br>
+            
+            <label for="photo1">Photo:</label>
+            <input type="file" name="photo" id="photo1" required>
+            <br>
+
+            <label for="caption1">Photo Caption:</label>
+            <input type="text" name="caption" id="caption1">
+            <br>
+            
+            <label for="tags1">Tags (space separated):</label>
+            <input type="text" name="tags" id="tags1">
+            <br>
+            <input type="submit" name="Add to Album" value="Add to Album">
+          </form>
+    </div><br>
+
+    
+
+    <div class="find-friends">
+        <form method="post" action="{{ url_for('add_friend') }}">
+            <h3>
+              <p align="center" style="color:#660033"> Add a Friend: </p>
+            </h3>
+            <input type="hidden" name="email" value="{{ email }}">
+            <input type="text" name="friend_email" placeholder="Enter Friend's Email"/>
+            <input type="submit" name="submit" value="Add friend"/>
+        </form>
+            <p color="red">{{friend_error}}</p>
+            <p color="green">{{friend_success}}</p>
+    </div><br>
+
+  <h3></h3><a href="updateuserinfo.html">Update personal information</a></h3>
+  <h3></h3><a href="{{ url_for('main') }}">Logout</a></h3>
+  </main>
+
+</body>
+</html>

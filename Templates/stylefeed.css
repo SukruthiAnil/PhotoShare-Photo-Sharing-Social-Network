@@ -1,0 +1,10 @@
+body{background-image: url("https://images.unsplash.com/photo-1607457561901-e6ec3a6d16cf?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8MXx8fGVufDB8fHx8&w=1000&q=80");}
+header{text-align: center;}
+section{background:#FFB6C1;}
+div.header{padding: 15px;}
+div.header h2{margin: 0;}
+.box .header .date {float: right}
+div.like{font-size: 20px}
+div.like button{width: 70px; height: 70px}
+.box{background:white; width:700px; margin: auto; margin-bottom: 60px; margin-top: 60px}
+img{width: 100%;}

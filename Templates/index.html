@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>PhotoShare</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    
+    <style>
+      body {
+        background-image: url("https://images.unsplash.com/photo-1607457561901-e6ec3a6d16cf?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8MXx8fGVufDB8fHx8&w=1000&q=80");
+        background-repeat: no-repeat;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+        
+      }
+        head > title {
+            text-align: center;
+        }
+        
+
+
+        .login {
+            position: relative;
+            top: 0;
+            right: 0;
+            text-align: center;
+        }
+        
+        .topusers {
+            position: relative;
+            top: auto;
+            left: 80%;
+            transform: translate(-80%, 0);
+            text-align: center;
+        }
+
+
+    </style>
+</head>
+
+<body 
+    <main>
+
+        <h1 align="center", style="color:#660033"> Photoshare </h1>
+
+        <div class="login">
+
+            <h3 style="color:#660033">Log in to your Account: </h3>
+            <form action="{{ url_for('login') }}" method="post">
+                <input name="email" type="text" id="email" placeholder="Enter Email" required="required" />
+                <input name="password" type="password" id="password" placeholder="Enter Password" required="required" />
+                <input type="submit" name = "submit" value="sign In">
+            </form>
+            <a href="{{ url_for('signUp') }}">Don't have an account? Sign up here!</a>
+        </div>
+            
+        <div class="topusers">
+                <h3 style="color:#660033">Top 10 Users: </h3>
+                    {% for user in top_users %}
+                    <p style="color:#660033">{{ user[0] }} {{ user[1] }}: {{ user[2] }}</p>
+                    {% endfor %}
+
+        </div>
+
+    </main>
+ 
+
+</body>
+</html>

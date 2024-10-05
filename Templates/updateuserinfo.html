@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>PhotoShare</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+</head>
+
+<body>
+
+    <style>
+    body {
+        background-image: url("https://images.unsplash.com/photo-1607457561901-e6ec3a6d16cf?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8MXx8fGVufDB8fHx8&w=1000&q=80");
+        background-repeat: no-repeat;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+      }
+
+      main {display: flex; justify-content: center; align-items: center; flex-direction: column;}
+    </style>
+
+
+    <main>
+         <h1 align="center", style="color:#660033"> Photoshare </h1>
+        <h3 style="color:#660033">Update personal information</h3><br>
+
+        <form method="post" action="{{ url_for('signUp') }}" >
+            <label for="email", style="color:#660033">Email: </label><br>
+<!--            <input type ="text" name="email" required></label><br><br>-->
+            <label for="firstName", style="color:#660033">First Name: </label>
+            <input type ="text" name="firstName" required></label><br><br>
+            <label for="lastName", style="color:#660033">Last Name: </label>
+            <input type ="text" name="lastName" required></label><br><br>
+            <label for="password", style="color:#660033">Password: </label>
+            <input type ="password" name="password" required></label><br><br>
+            <label for="gender", style="color:#660033"> Gender:  </label>
+            <label for="gender-male", style="color:#660033">Male</label>
+            <input type ="radio" id="gender-male" name="gender" value="male" required>
+            <label for="gender-female", style="color:#660033">Female</label>
+            <input type ="radio" id="gender-female" name="gender" value="female" required>
+            <label for="gender-other", style="color:#660033">Other</label>
+            <input type ="radio" id="gender-female" name="gender" value="female" required><br><br>
+            <label for="dateOfBirth", style="color:#660033">Date of Birth: </label>
+            <input type ="date" name="dateOfBirth" required><br><br>
+            <label for="hometown", style="color:#660033">Hometown: </label>
+            <input type ="text" name="hometown" required></label><br><br>
+            <input type="submit" value="Update", style="color:#660033">
+        </form>
+    </main>
+
+</body>
+</html>

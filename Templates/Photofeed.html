@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>PhotoShare feed</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" type="text/css" href="stylefeed.css">
+</head>
+
+<body>
+    <style>
+        .like-button {
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+            font-size: 20px;
+            outline: none;
+            width: 50px;
+            height: 50px;
+        }
+
+        .heart {
+            display: inline-block;
+            height: 1em;
+            width: 1em;
+            color: #ccc;
+            font-size: 50px;
+            line-height: 1em;
+            text-align: center;
+            width: 50px;
+            height: 50px;
+        }
+
+        .like-button.liked .heart {
+        background-color: red;
+            border: none;
+            cursor: pointer;
+            font-size: 20px;
+            outline: none;
+            width: 50px;
+            height: 50px;
+        }
+
+        .count {
+            font-size: 20px;
+            margin-left: 20px;
+        }
+        body{background-image: url("https://images.unsplash.com/photo-1607457561901-e6ec3a6d16cf?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8MXx8fGVufDB8fHx8&w=1000&q=80");}
+        header{text-align: center;}
+        section{background:#FFB6C1;}
+        div.header{padding: 15px;}
+        div.header h2{margin: 0;}
+        .box .header .date {float: right}
+        div.like{font-size: 20px}
+        div.like button{width: 70px; height: 70px}
+        .box{background:white; width:700px; margin: auto; margin-bottom: 60px; margin-top: 60px}
+        img{width: 100%;}
+    </style>
+    <header>
+        <h1> My photo feed </h1>
+    </header>
+    <section>
+        <<div style="text-align:center">
+            <div class="box">
+                <div class="header"><h2>My first photo</h2><p class="date">4/22</p></div>
+                <div class="img">
+                <img src = "https://images.unsplash.com/photo-1574293876203-8bded53be0f0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1000&q=80">
+                </div>
+                <div class="description">This is my first image here. It is a puppy. <a href="firstimage.html">#firstimage</a> <a href="album.html">#puppy </a></div>
+
+                <div class="like"><button class="like-button">
+                <span class="heart">&#10084;</span>
+                </button>
+
+                <p class="count">0</p>
+
+                <script>
+                    var count = 0;
+                    var likeButton = document.querySelector(".like-button");
+                    var countDisplay = document.querySelector(".count");
+
+                    likeButton.addEventListener("click", function() {
+                    if (likeButton.classList.contains("liked")) {
+                        count--;
+                    } else {
+                        count++;
+                    }
+                    countDisplay.innerHTML = count;
+                    likeButton.classList.toggle("liked");
+                    });
+                </script></div>
+                <div class="comment">
+
+                <form action="submit-comment.php" method="post">
+                <label for="comment">Leave a comment:</label>
+                <textarea id="comment" name="comment"></textarea>
+                <input name="submit" type="submit" value="Post" onclick=/></form>
+                </div>
+            </div>
+            <div class="box">
+                <div class="header"><h2>Today's lunch</h2><p class="date">4/22</p></div>
+                <div class="img">
+                    <img src = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ30RZOuRXyLH9SaOojt274nFFTON8-YIittQ&usqp=CAU">
+                </div>
+                <div class="description">Had this delicious meal at Hotel Ritz today. #meal #pasta </div>
+
+                <div class="like"><button class="like-button">
+                <span class="heart">&#10084;</span>
+                </button>
+
+                <p class="count">0</p>
+
+                <script>
+                var count = 0;
+                var likeButton = document.querySelector(".like-button");
+                var countDisplay = document.querySelector(".count");
+
+                likeButton.addEventListener("click", function() {
+                if (likeButton.classList.contains("liked")) {
+                    count--;
+                } else {
+                    count++;
+                }
+                countDisplay.innerHTML = count;
+                likeButton.classList.toggle("liked");
+                });
+                </script></div>
+                <div class="comment">
+
+                <form action="submit-comment.php" method="post">
+                <label for="comment">Leave a comment:</label>
+                <textarea id="comment" name="comment"></textarea>
+                <button type="submit">Post</button></form>
+                </div>
+
+            </div>
+            <div class="box">
+                <div class="header"><h2>New family member</h2><p class="date">4/22</p></div>
+                <div class="img">
+                    <img src = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSokeuDRx-GFQ4zjSt1YUnwcakYnJvsZ6_x5A&usqp=CAU">
+                </div>
+                <div class="description">The internet approves of this cute puppy #myfav <a href="https://www.google.com/search?q=puppy&rlz=1C5MACD_enUS1041US1041&source=lnms&tbm=isch&sa=X&ved=2ahUKEwjWo7jk777-AhUqC0QIHRy_B_QQ0pQJegQIAhAC&biw=1470&bih=809&dpr=2">#puppy </a></div>
+
+                <div class="like"><button class="like-button">
+                <span class="heart">&#10084;</span>
+                </button>
+
+                <p class="count">0</p>
+
+                <script>
+                var count = 1;
+                var likeButton = document.querySelector(".like-button");
+                var countDisplay = document.querySelector(".count");
+
+                likeButton.addEventListener("click", function() {
+                if (likeButton.classList.contains("liked")) {
+                    count--;
+                } else {
+                    count++;
+                }
+                countDisplay.innerHTML = count;
+                likeButton.classList.toggle("liked");
+                });
+                </script></div>
+                <div class="comment">
+
+                <form action="submit-comment.php" method="post">
+                <label for="comment">Leave a comment:</label>
+                <textarea id="comment" name="comment"></textarea>
+                <button type="submit">Post</button></form>
+                </div>
+
+            </div>
+
+
+        </div>
+            
+    </section>
+
+    <footer>
+
+    </footer>
+</body>
+</html>
